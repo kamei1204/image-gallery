@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #000;
+}
+.box {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    transform-style: preserve-3d;
+    animation: animate 20s infinite linear;
+}
+@keyframes animate {
+    0% {
+        /* perspective …… 3D変形の奥行きの深さを指定する（親要素に指定 */
+        transform: perspective(800px) rotateX(0deg) rotateY(35deg);
+    }
+    100% {
+        transform: perspective(800px) rotateX(360deg) rotateY(35deg);
+    }
+}
+.box span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    /* 要素の形を変化させずに横座標 (水平軸) の周りを回転させる変形を定義します */
+    /* 三次元空間の z 軸に沿って、すなわち閲覧者に近づいたり遠ざかったりするように要素を移動させます */
+    transform: rotateX(calc(var(--i) * 45deg)) translateZ(300px);
+    object-fit: cover;
+}
+.box span img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
